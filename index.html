@@ -196,6 +196,9 @@
         }
 
         .navbar-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             font-size: 1.5rem;
             font-weight: 800;
             letter-spacing: -0.5px;
@@ -204,6 +207,35 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: slideIn 0.6s ease-out;
+        }
+
+        .brand-logo-img {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            flex-shrink: 0;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 1px solid rgba(168, 85, 247, 0.55);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.35);
+        }
+
+        .section-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            box-shadow: 0 0 24px rgba(168, 85, 247, 0.25);
         }
 
         .nav-link {
@@ -566,6 +598,9 @@
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.8rem; }
             .lightbox-nav { font-size: 32px; }
+            .brand-logo-img { width: 38px; height: 38px; }
+            .hero-logo { width: 88px; height: 88px; }
+            .section-logo { width: 68px; height: 68px; }
         }
 
         focus-visible {
@@ -585,7 +620,10 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div class="navbar-logo">⚔️ Brothers Grim</div>
+        <a href="#home" class="navbar-logo">
+            <img src="logo.webp" alt="Brothers Grim logo" class="brand-logo-img" loading="lazy">
+            <span>Brothers Grim</span>
+        </a>
 
         <div class="hidden md:flex gap-8 items-center">
             <a href="#home" class="nav-link">Home</a>
@@ -630,6 +668,7 @@
     </div>
 
     <div class="relative z-10 text-center mx-auto px-4 max-w-5xl">
+        <img src="logo.webp" alt="Brothers Grim brand mark" class="hero-logo fade-in" loading="lazy">
         <h1 class="text-6xl md:text-7xl lg:text-8xl font-black mb-6 neon-glow fade-in leading-tight">
             Long Island's Premier<br><span class="gradient-text">Gaming & Collectibles</span> Hub
         </h1>
@@ -760,6 +799,9 @@
     </div>
 
     <div class="max-w-6xl mx-auto relative z-10">
+        <div class="flex justify-center mb-6 scroll-fade">
+            <img src="logo.webp" alt="Brothers Grim eBay logo" class="section-logo" loading="lazy">
+        </div>
         <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
             eBay
         </h2>
@@ -1171,7 +1213,10 @@
     <div class="max-w-7xl mx-auto relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
-                <h4 class="font-black text-lg mb-4 gradient-text">⚔️ Brothers Grim</h4>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo.webp" alt="Brothers Grim logo" class="brand-logo-img" loading="lazy">
+                    <h4 class="font-black text-lg gradient-text">Brothers Grim</h4>
+                </div>
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Long Island's Premier Gaming & Collectibles Hub
                 </p>
