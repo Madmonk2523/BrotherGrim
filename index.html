@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brothers Grim Games and Collectibles - Premium Gaming & Collectibles Hub</title>
+    <meta name="description" content="Long Island's Premier Gaming & Collectibles Hub. Card games, board games, RPGs, miniatures, tournaments & more.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23a855f7'>🎮</text></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.6); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .hero-gradient {
+            background: linear-gradient(-45deg, #0a0a0a, #1a0033, #000a2e, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* ==================== NEON & GLOW ==================== */
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.6),
+                         0 0 20px rgba(168, 85, 247, 0.4),
+                         0 0 30px rgba(99, 102, 241, 0.2);
+            color: #fff;
+        }
+
+        .neon-glow-sm {
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+        }
+
+        /* Enhanced Glow Button */
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .glow-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.7),
+                        0 0 40px rgba(59, 130, 246, 0.5),
+                        inset 0 0 20px rgba(168, 85, 247, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .glow-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* ==================== CARDS ==================== */
+        .card-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: rgba(20, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+        }
+
+        .card-lift::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.05));
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .card-lift:hover {
+            transform: translateY(-12px);
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(20, 20, 35, 0.9);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2),
+                        0 0 30px rgba(168, 85, 247, 0.1);
+        }
+
+        .card-lift:hover::before {
+            opacity: 1;
+        }
+
+        /* ==================== SCROLL ANIMATIONS ==================== */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar.scrolled {
+            border-bottom-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.1);
+        }
+
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #6366f1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #6366f1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(11px, 11px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* ==================== GALLERY ==================== */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            group: "gallery";
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12) rotate(1deg);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-icon {
+            font-size: 3rem;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover .gallery-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ==================== LIGHTBOX ==================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 44px;
+            color: #a855f7;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #6366f1;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 42px;
+            color: #a855f7;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .lightbox-nav:hover {
+            color: #6366f1;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* ==================== REVIEWS ==================== */
+        .review-card {
+            padding: 24px;
+            background: rgba(20, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #6366f1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.15);
+        }
+
+        .review-card:hover::before {
+            opacity: 1;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* ==================== CAROUSEL ==================== */
+        .carousel-container {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 0;
+        }
+
+        /* ==================== CONTACT ==================== */
+        .contact-card {
+            background: rgba(20, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), transparent);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.1);
+        }
+
+        .contact-card:hover::after {
+            opacity: 1;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn-primary {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7),
+                        0 0 50px rgba(99, 102, 241, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(168, 85, 247, 0.6);
+            color: #a855f7;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: #a855f7;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            transform: translateY(-4px);
+        }
+
+        /* ==================== ICONS ==================== */
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(99, 102, 241, 0.08));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-lift:hover .icon-box {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.15));
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            transform: translateY(-4px) scale(1.08);
+        }
+
+        /* ==================== UTILITY ==================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .lightbox-nav { font-size: 32px; }
+        }
+
+        focus-visible {
+            outline: 2px solid #a855f7;
+            outline-offset: 2px;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #a855f7;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div class="navbar-logo">⚔️ Brothers Grim</div>
+
+        <div class="hidden md:flex gap-8 items-center">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#games" class="nav-link">Games</a>
+            <a href="#events" class="nav-link">Events</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="md:hidden">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="px-4 py-4 space-y-3 bg-gray-900/50 backdrop-blur-md border-t border-purple-500/20">
+            <a href="#home" class="block py-2 hover:text-purple-400 transition">Home</a>
+            <a href="#about" class="block py-2 hover:text-purple-400 transition">About</a>
+            <a href="#games" class="block py-2 hover:text-purple-400 transition">Games</a>
+            <a href="#events" class="block py-2 hover:text-purple-400 transition">Events</a>
+            <a href="#gallery" class="block py-2 hover:text-purple-400 transition">Gallery</a>
+            <a href="#reviews" class="block py-2 hover:text-purple-400 transition">Reviews</a>
+            <a href="#contact" class="block py-2 hover:text-purple-400 transition">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="home" class="hero-gradient relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-40">
+        <div class="absolute w-96 h-96 bg-purple-700 rounded-full blur-3xl opacity-20 animate-pulse" style="top: 10%; left: -10%;"></div>
+        <div class="absolute w-96 h-96 bg-blue-700 rounded-full blur-3xl opacity-20 animate-pulse" style="top: 50%; right: -10%; animation-delay: 2s;"></div>
+        <div class="absolute w-96 h-96 bg-purple-600 rounded-full blur-3xl opacity-15 animate-pulse" style="bottom: -10%; left: 30%; animation-delay: 4s;"></div>
+    </div>
+
+    <div class="relative z-10 text-center mx-auto px-4 max-w-5xl">
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-black mb-6 neon-glow fade-in leading-tight">
+            Long Island's Premier<br><span class="gradient-text">Gaming & Collectibles</span> Hub
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-300 mb-12 fade-in fade-in-delay-1 font-light">
+            Card games, board games, RPGs, miniatures, tournaments & more
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in fade-in-delay-2">
+            <a href="#about" class="btn-primary glow-button px-10 py-4 rounded-lg font-bold text-white transition-all">
+                Visit the Store
+            </a>
+            <a href="#events" class="btn-secondary glow-button px-10 py-4 rounded-lg font-bold transition-all">
+                View Events
+            </a>
+        </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section id="games" class="py-32 px-4 bg-gray-950 relative">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
+            What We Offer
+        </h2>
+        <p class="text-center text-gray-400 mb-20 scroll-fade max-w-2xl mx-auto">
+            Everything for gamers and collectible enthusiasts
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">🎴</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Trading Card Games</h3>
+                <p class="text-gray-400 text-center text-sm">
+                    Pokémon, Yu-Gi-Oh, Magic & One Piece with expert selection
+                </p>
+            </div>
+
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">🎲</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Tabletop & RPGs</h3>
+                <p class="text-gray-400 text-center text-sm">
+                    D&D, Warhammer, board games for every adventure
+                </p>
+            </div>
+
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">⚔️</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Miniature Gaming</h3>
+                <p class="text-gray-400 text-center text-sm">
+                    Dedicated tables, terrain & competitive play
+                </p>
+            </div>
+
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">🎮</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Video Games & More</h3>
+                <p class="text-gray-400 text-center text-sm">
+                    Play N Trade, retro classics & collectibles
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="py-32 px-4 bg-black relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute w-96 h-96 bg-purple-700 rounded-full blur-3xl" style="top: -10%; right: -5%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="scroll-fade">
+                <h2 class="text-5xl md:text-6xl font-black mb-8 neon-glow">
+                    About<br><span class="gradient-text">Brothers Grim</span>
+                </h2>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed font-light">
+                    We are one of the premier hobby and gaming stores on Long Island. We provide something for all gamers and hobby enthusiasts. From card games and board games to miniature gaming and role-playing books, we offer a full experience.
+                </p>
+                <p class="text-gray-300 text-lg leading-relaxed font-light">
+                    We also host organized play events and tournaments, with dedicated space for both casual and competitive players. Our community is at the heart of everything we do—whether you're a seasoned veteran or discovering the hobby, you'll find your place at Brothers Grim.
+                </p>
+            </div>
+
+            <div class="scroll-fade">
+                <div class="h-96 bg-gradient-to-br from-purple-900/40 to-blue-900/40 rounded-lg border border-purple-500/30 flex items-center justify-center overflow-hidden relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="text-center relative z-10">
+                        <div class="text-8xl mb-4 animate-pulse">🎯</div>
+                        <p class="text-gray-400 font-medium">Store Image</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLAY N TRADE SECTION -->
+<section class="py-32 px-4 bg-gray-950">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/50 p-12 text-center scroll-fade backdrop-blur-sm relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-blue-600/10 opacity-0 hover:opacity-100 transition duration-500"></div>
+            <div class="relative z-10">
+                <h3 class="text-4xl font-black mb-4 neon-glow">
+                    Inside Brothers Grim: Play N Trade
+                </h3>
+                <p class="text-gray-300 text-lg mb-10 font-light">
+                    Explore video games, retro classics, and exclusive collectibles inside our in-store Play N Trade experience.
+                </p>
+                <a href="https://play-n-trade.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary glow-button px-10 py-4 rounded-lg font-bold text-white inline-block transition-all">
+                    Visit Play N Trade →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EVENTS SECTION -->
+<section id="events" class="py-32 px-4 bg-black relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute w-96 h-96 bg-blue-700 rounded-full blur-3xl" style="bottom: -10%; left: -5%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
+            Events & Community
+        </h2>
+        <p class="text-center text-gray-400 mb-20 scroll-fade max-w-2xl mx-auto">
+            Join the thriving gaming community on Long Island
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">🏆</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Weekly Tournaments</h3>
+                <p class="text-gray-400 text-center">
+                    Competitive organized play with prizes. Test your skills against the best.
+                </p>
+            </div>
+
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">🎪</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Open Play Nights</h3>
+                <p class="text-gray-400 text-center">
+                    Casual gatherings for all skill levels. Build friendships & discover new games.
+                </p>
+            </div>
+
+            <div class="card-lift p-8 rounded-lg scroll-fade">
+                <div class="icon-box mb-6 mx-auto">📅</div>
+                <h3 class="text-xl font-bold mb-3 text-center">Special Events</h3>
+                <p class="text-gray-400 text-center">
+                    Release events, celebrations & exclusive experiences year-round.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center scroll-fade">
+            <p class="text-lg text-gray-300 mb-8 font-medium">
+                🎮 Ready to join the community?
+            </p>
+            <a href="#contact" class="btn-primary glow-button px-10 py-4 rounded-lg font-bold text-white transition-all inline-block">
+                Get in Touch
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section id="gallery" class="py-32 px-4 bg-gray-950 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
+            Gallery
+        </h2>
+        <p class="text-center text-gray-400 mb-20 scroll-fade max-w-2xl mx-auto">
+            Explore the heart of our gaming community
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Gallery items with image placeholders ready for your images -->
+            <div class="gallery-item scroll-fade" onclick="openLightbox(0)">
+                <img src="gallery1.webp" alt="Gallery Image 1" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">📸</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-fade" onclick="openLightbox(1)">
+                <img src="gallery2.webp" alt="Gallery Image 2" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">🎮</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-fade" onclick="openLightbox(2)">
+                <img src="gallery3.webp" alt="Gallery Image 3" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">🎴</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-fade" onclick="openLightbox(3)">
+                <img src="gallery4.webp" alt="Gallery Image 4" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">⚔️</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-fade" onclick="openLightbox(4)">
+                <img src="gallery5.webp" alt="Gallery Image 5" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">🏪</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-fade" onclick="openLightbox(5)">
+                <img src="gallery6.webp" alt="Gallery Image 6" loading="lazy" onerror="this.style.display='none'">
+                <div style="display:none;" class="w-full h-full bg-gradient-to-br from-purple-900/40 to-blue-900/40 flex items-center justify-center">
+                    <span class="text-5xl">🎯</span>
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-icon">🔍</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-400 text-sm mt-12">Click any image to view in full screen ·🎯</p>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-nav lightbox-prev" onclick="prevImage()">&lt;</span>
+
+    <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="Full screen gallery view" loading="lazy">
+    </div>
+
+    <span class="lightbox-nav lightbox-next" onclick="nextImage()">&gt;</span>
+</div>
+
+<!-- REVIEWS SECTION -->
+<section id="reviews" class="py-32 px-4 bg-black relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute w-96 h-96 bg-purple-700 rounded-full blur-3xl" style="top: 50%; right: -10%;"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
+            Customer Reviews
+        </h2>
+        <p class="text-center text-gray-400 mb-20 scroll-fade max-w-2xl mx-auto">
+            Hear from our amazing community
+        </p>
+
+        <!-- Desktop Grid -->
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review 1: Lyle Gillen -->
+            <div class="review-card card-lift scroll-fade">
+                <div class="flex items-center mb-4">
+                    <div class="avatar bg-gradient-to-br from-purple-500 to-purple-700">LG</div>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-white">Lyle Gillen</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    "Extremely kind and helpful staff. They helped me find exactly what I needed without any pressure."
+                </p>
+            </div>
+
+            <!-- Review 2: Kevin Duong -->
+            <div class="review-card card-lift scroll-fade">
+                <div class="flex items-center mb-4">
+                    <div class="avatar bg-gradient-to-br from-blue-500 to-blue-700">KD</div>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-white">Kevin Duong</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    "Amazing store with a great selection. The staff were kind and accommodating. Highly recommended!"
+                </p>
+            </div>
+
+            <!-- Review 3: Matt -->
+            <div class="review-card card-lift scroll-fade">
+                <div class="flex items-center mb-4">
+                    <div class="avatar bg-gradient-to-br from-purple-500 to-pink-700">MT</div>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-white">Matt</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    "Been going for over 12 years. Amazing community and excellent tournament support. This is my second home!"
+                </p>
+            </div>
+
+            <!-- Review 4: X Z -->
+            <div class="review-card card-lift scroll-fade">
+                <div class="flex items-center mb-4">
+                    <div class="avatar bg-gradient-to-br from-indigo-500 to-purple-700">XZ</div>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-white">X Z</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    "Awesome card shop with great selection and a super chill vibe. Staff genuinely care about customers."
+                </p>
+            </div>
+
+            <!-- Review 5: Daryl Costa -->
+            <div class="review-card card-lift scroll-fade">
+                <div class="flex items-center mb-4">
+                    <div class="avatar bg-gradient-to-br from-cyan-500 to-blue-700">DC</div>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-white">Daryl Costa</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    "Incredible with kids. They made my son feel so welcome and helped him find what he was looking for!"
+                </p>
+            </div>
+        </div>
+
+        <!-- Mobile Carousel -->
+        <div class="md:hidden">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item">
+                        <div class="review-card">
+                            <div class="flex items-center mb-4">
+                                <div class="avatar bg-gradient-to-br from-purple-500 to-purple-700">LG</div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold">Lyle Gillen</h4>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Extremely kind and helpful staff. They helped me find exactly what I needed."</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="review-card">
+                            <div class="flex items-center mb-4">
+                                <div class="avatar bg-gradient-to-br from-blue-500 to-blue-700">KD</div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold">Kevin Duong</h4>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Amazing store with great selection. Staff were kind and accommodating!"</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="review-card">
+                            <div class="flex items-center mb-4">
+                                <div class="avatar bg-gradient-to-br from-purple-500 to-pink-700">MT</div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold">Matt</h4>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Been going 12+ years. Amazing community and excellent tournament support!"</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="review-card">
+                            <div class="flex items-center mb-4">
+                                <div class="avatar bg-gradient-to-br from-indigo-500 to-purple-700">XZ</div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold">X Z</h4>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Awesome shop with great selection and chill vibe. Staff genuinely care!"</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="review-card">
+                            <div class="flex items-center mb-4">
+                                <div class="avatar bg-gradient-to-br from-cyan-500 to-blue-700">DC</div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold">Daryl Costa</h4>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Incredible with kids. Made my son feel welcome and helped find what he needed!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 mt-8">
+                <button onclick="prevReview()" class="btn-secondary glow-button px-6 py-2 rounded-lg text-sm font-bold">← Previous</button>
+                <span id="carouselIndicator" class="text-gray-400 flex items-center px-4">1 / 5</span>
+                <button onclick="nextReview()" class="btn-secondary glow-button px-6 py-2 rounded-lg text-sm font-bold">Next →</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="py-32 px-4 bg-gray-950 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute w-96 h-96 bg-purple-700 rounded-full blur-3xl" style="top: -10%; left: -10%;"></div>
+        <div class="absolute w-96 h-96 bg-blue-700 rounded-full blur-3xl" style="bottom: -10%; right: -10%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <h2 class="text-5xl md:text-6xl font-black text-center mb-4 neon-glow scroll-fade">
+            Get in Touch
+        </h2>
+        <p class="text-center text-gray-400 mb-20 scroll-fade max-w-2xl mx-auto">
+            Visit us or reach out anytime
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div class="space-y-8">
+                <div class="contact-card scroll-fade">
+                    <div class="text-5xl mb-4">📍</div>
+                    <h3 class="text-2xl font-bold mb-3">Visit Us</h3>
+                    <p class="text-gray-300 font-light">
+                        1244 Middle Country Rd<br><span class="font-semibold">Selden, NY 11784</span>
+                    </p>
+                </div>
+
+                <div class="contact-card scroll-fade">
+                    <div class="text-5xl mb-4">📞</div>
+                    <h3 class="text-2xl font-bold mb-3">Call Us</h3>
+                    <a href="tel:+16316982805" class="text-purple-400 hover:text-purple-300 font-bold text-2xl transition">
+                        (631) 698-2805
+                    </a>
+                </div>
+
+                <div class="contact-card scroll-fade">
+                    <div class="text-5xl mb-4">🕐</div>
+                    <h3 class="text-2xl font-bold mb-4">Hours</h3>
+                    <div class="text-gray-300 font-light space-y-2 text-center">
+                        <p><span class="font-semibold">Sunday:</span> 12 PM – 7 PM</p>
+                        <p><span class="font-semibold">Mon–Fri:</span> 12 PM – 11 PM</p>
+                        <p><span class="font-semibold">Saturday:</span> 12 PM – 8 PM</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="tel:+16316982805" class="btn-primary glow-button px-8 py-4 rounded-lg font-bold text-white text-center transition-all flex items-center justify-center gap-2">
+                        ☎️ Call Now
+                    </a>
+                    <a href="https://maps.google.com/?q=1244+Middle+Country+Rd,+Selden,+NY+11784" target="_blank" rel="noopener noreferrer" class="btn-primary glow-button px-8 py-4 rounded-lg font-bold text-white text-center transition-all flex items-center justify-center gap-2">
+                        🗺️ Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <div class="h-96 bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg border border-purple-500/30 overflow-hidden scroll-fade backdrop-blur-sm">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.0944506933046!2d-72.92370!3d40.85940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e82b0c3c3c3c3d%3A0x3c3c3c3c3c3c3c3c!2s1244%20Middle%20Country%20Rd%2C%20Selden%2C%20NY%2011784!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="100%" style="border:none;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black border-t border-purple-500/20 py-16 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute w-96 h-96 bg-purple-700 rounded-full blur-3xl" style="bottom: -10%; left: 10%;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <h4 class="font-black text-lg mb-4 gradient-text">⚔️ Brothers Grim</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Long Island's Premier Gaming & Collectibles Hub
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#home" class="hover:text-purple-400 transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-purple-400 transition">About</a></li>
+                    <li><a href="#games" class="hover:text-purple-400 transition">Games</a></li>
+                    <li><a href="#contact" class="hover:text-purple-400 transition">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="https://www.youtube.com/channel/UCVglv1vug30AGbdlsVYESHQ" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition">YouTube</a></li>
+                    <li><a href="https://www.facebook.com/BrothersGrimGames" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition">Facebook</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-4">Contact</h4>
+                <div class="text-gray-400 text-sm space-y-2">
+                    <p><a href="tel:+16316982805" class="hover:text-purple-400 transition">(631) 698-2805</a></p>
+                    <p class="text-xs leading-relaxed">1244 Middle Country Rd<br>Selden, NY 11784</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider mb-8"></div>
+
+        <div class="text-center text-gray-500 text-sm">
+            <p>&copy; 2026 Brothers Grim Games and Collectibles. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+    // ========== NAVBAR SCROLL EFFECT ==========
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // ========== HAMBURGER MENU ==========
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // ========== SCROLL ANIMATIONS ==========
+    const scrollElements = document.querySelectorAll('.scroll-fade');
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
+    };
+
+    const displayScrollElements = () => {
+        scrollElements.forEach((element) => {
+            if (elementInView(element, 1.25)) {
+                element.classList.add('visible');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', displayScrollElements);
+    displayScrollElements();
+
+    // ========== LIGHTBOX & GALLERY ==========
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const galleryItems = [
+        'gallery1.webp',
+        'gallery2.webp',
+        'gallery3.webp',
+        'gallery4.webp',
+        'gallery5.webp',
+        'gallery6.webp'
+    ];
+
+    let currentImageIndex = 0;
+
+    function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function updateLightboxImage() {
+        lightboxImage.src = galleryItems[currentImageIndex];
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+        updateLightboxImage();
+    }
+
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+        updateLightboxImage();
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') closeLightbox();
+        }
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // ========== REVIEWS CAROUSEL ==========
+    const carouselTrack = document.getElementById('carouselTrack');
+    const carouselIndicator = document.getElementById('carouselIndicator');
+    let currentReviewIndex = 0;
+    const totalReviews = 5;
+
+    function updateCarousel() {
+        const offset = -currentReviewIndex * 100;
+        carouselTrack.style.transform = `translateX(${offset}%)`;
+        carouselIndicator.textContent = `${currentReviewIndex + 1} / ${totalReviews}`;
+    }
+
+    function nextReview() {
+        currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
+        updateCarousel();
+    }
+
+    function prevReview() {
+        currentReviewIndex = (currentReviewIndex - 1 + totalReviews) % totalReviews;
+        updateCarousel();
+    }
+</script>
+
+</body>
+</html>
